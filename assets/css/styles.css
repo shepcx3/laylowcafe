@@ -376,6 +376,34 @@ p { margin: 0 0 1em; }
 .menu-item .leader { flex: 1; border-bottom: 2px dotted rgba(31, 28, 22, 0.25); transform: translateY(-4px); min-width: 20px; }
 .menu-item .price { font-weight: 700; font-variant-numeric: tabular-nums; }
 .menu-item p { margin: 6px 0 0; color: var(--ink-soft); font-size: 0.98rem; max-width: 60ch; }
+.menu-item .addon { font-size: 0.92rem; font-weight: 600; color: var(--olive-deep); }
+.menu-item--compact { padding: 10px 0; }
+.menu-item--compact h3 { font-size: 1.12rem; }
+.menu-item--sub { padding-left: 18px; }
+.menu-item--sub h3 { font-style: italic; font-weight: 500; }
+.menu-list--cols { column-count: 2; column-gap: clamp(24px, 4vw, 48px); }
+.menu-list--cols .menu-item { break-inside: avoid; }
+.menu-list--cols .menu-item:first-child { padding-top: 10px; }
+@media (max-width: 560px) { .menu-list--cols { column-count: 1; } }
+.menu-item--feature {
+  background: var(--booth); color: var(--cream); border: 0;
+  border-radius: var(--radius); padding: 20px 22px !important; margin-bottom: 8px;
+}
+.menu-item--feature p { color: rgba(246, 239, 225, 0.8); }
+.menu-item--feature .leader { border-color: rgba(246, 239, 225, 0.35); }
+.menu-group-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin: 0 0 14px;
+}
+.menu-group-head:not(:first-child) { margin-top: 36px; }
+.menu-group-head h3 { font-size: 1.5rem; margin: 0; }
+.menu-group-head .price { font-weight: 700; font-size: 1.2rem; }
+.sides { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; margin-top: 1rem; }
+.sides h3 { font-size: 1.15rem; }
+.sides ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 0.95rem; }
+.sides li { display: flex; justify-content: space-between; gap: 12px; }
+.sides small { display: block; color: var(--ink-soft); }
+.sides .price { font-weight: 700; white-space: nowrap; }
 .tags { display: inline-flex; gap: 4px; margin-left: 4px; vertical-align: middle; }
 .tag {
   display: inline-grid; place-items: center; min-width: 26px; height: 22px; padding: 0 6px;

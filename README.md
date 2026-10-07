@@ -26,7 +26,7 @@ python3 -m http.server 8080
 
 ## Common edits
 
-**Menu.** Edit `menu/index.html`. Each dish is one `<li class="menu-item">`. Copy an existing item and change it. The comment at the top of the menu explains how to add prices and the VG / V / GF tags.
+**Menu.** Edit `menu/index.html`. Each dish is one `<li class="menu-item">` with its name, price and description. Copy an existing item and change it. The comment at the top of the menu explains the VG / V / GF tags and the shorter drink rows.
 
 **Hours.** Hours appear in four places. Update all four:
 1. The `HOURS` array in `assets/js/main.js`. This drives the "Open now" badge.
@@ -35,6 +35,8 @@ python3 -m http.server 8080
 4. The footer in every page, plus the "7–5" sticker and the text on the home page.
 
 **Photos.** Add the JPEG to `assets/img/`, at roughly 1200px on the long edge and quality 80. Then update the `src`, `alt`, `width` and `height` attributes.
+
+Every link and asset path is relative, for example `assets/...` on the home page and `../assets/...` in sub-pages. Keep it that way, so the site works on the real domain, on a GitHub Pages subfolder and when opened straight from disk. A path starting with `/` breaks the styling everywhere except the domain root.
 
 The header, footer and mobile action bar are repeated in each page. If you change one, change it in all of them, or search the whole project for the text.
 
