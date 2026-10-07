@@ -97,10 +97,10 @@
             <a class="btn btn--ghost" href="https://www.tiktok.com/@laylowcafe" target="_blank" rel="noopener">TikTok</a>
           </div>
         </div>
-        <!-- Netlify Forms handles submissions (no backend needed). Set the notification email in Netlify > Forms. -->
-        <form class="form reveal" name="contact" method="POST" action="../thanks/" data-netlify="true" netlify-honeypot="company">
-          <input type="hidden" name="form-name" value="contact">
-          <p class="hp"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off"></label></p>
+        <!-- Submissions go to Formspree, which emails them on. Replace YOUR_FORM_ID with the ID from formspree.io (see README). -->
+        <form class="form reveal" method="POST" action="https://formspree.io/f/YOUR_FORM_ID" data-contact-form>
+          <input type="hidden" name="_subject" value="New message from laylowcafe.ca">
+          <p class="hp"><label>Leave this empty <input name="_gotcha" tabindex="-1" autocomplete="off"></label></p>
           <label>Name <input name="name" autocomplete="name" required></label>
           <label>Email <input type="email" name="email" autocomplete="email" required></label>
           <label>What's it about?
@@ -113,7 +113,7 @@
           </label>
           <label>Message <textarea name="message" required></textarea></label>
           <button class="btn btn--olive" type="submit">Send message</button>
-          <p class="form-note">We don't take reservations, so walk-ins only.</p>
+          <p class="form-note" data-form-status role="status" aria-live="polite">We don't take reservations, so walk-ins only.</p>
         </form>
       </div>
     </section>

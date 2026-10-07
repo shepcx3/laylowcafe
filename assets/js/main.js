@@ -122,5 +122,37 @@ if (menuLinks.length && "IntersectionObserver" in window) {
   document.querySelectorAll(".menu-section").forEach((s) => spy.observe(s));
 }
 
+// Contact form: send to Formspree in the background and show the result inline
+const form = document.querySelector("[data-contact-form]");
+if (form) {
+  const status = form.querySelector("[data-form-status]");
+  const button = form.querySelector("button[type=submit]");
+  const fallback = 'Sorry, that didn\'t send. Please call us at <a href="tel:+16135469080">(613) 546-9080</a> or DM <a href="https://www.instagram.com/laylowcafe/">@laylowcafe</a>.';
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (form.action.includes("YOUR_FORM_ID")) {
+      status.innerHTML = "The contact form isn't connected yet. " + fallback.replace("Sorry, that didn't send. ", "");
+      return;
+    }
+    button.disabled = true;
+    button.textContent = "Sending…";
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+      if (!res.ok) throw new Error(res.status);
+      form.reset();
+      status.textContent = "Thanks, we got it! We'll get back to you soon.";
+    } catch {
+      status.innerHTML = fallback;
+    } finally {
+      button.disabled = false;
+      button.textContent = "Send message";
+    }
+  });
+}
+
 // Footer year
 document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
