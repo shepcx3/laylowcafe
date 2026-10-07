@@ -1,0 +1,24 @@
+# Plain static site: no build step, publish the repo root.
+[build]
+  publish = "."
+
+# /menu, /events and /contact-us are folders with an index.html, so the old
+# GoDaddy URLs keep working with no redirects.
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Send www to the bare domain
+[[redirects]]
+  from = "https://www.laylowcafe.ca/*"
+  to = "https://laylowcafe.ca/:splat"
+  status = 301
+  force = true
