@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,500..600,100,1;1,9..144,500..600,100,1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=8">
+  <link rel="stylesheet" href="assets/css/styles.css?v=9">
   <link rel="preload" as="image" href="assets/img/brunch-spread.jpg">
 
   <script type="application/ld+json">
@@ -67,8 +67,8 @@
       }
     } catch (e) {}
   </script>
-  <script src="assets/js/intro.js?v=11" defer></script>
-  <script src="assets/js/main.js?v=8" defer></script>
+  <script src="assets/js/intro.js?v=9" defer></script>
+  <script src="assets/js/main.js?v=9" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -100,8 +100,8 @@
         <div>
           <span class="status-pill hero-status" data-open-status><span class="dot"></span><span class="label">Open daily 7am–4pm</span></span>
           <span class="eyebrow">241 Princess St · Kingston</span>
-          <h1>Brunch, coffee &amp; a little <em>disco</em>.</h1>
-          <p class="lede">All-day breakfast, lunch, coffee and cocktails. Walk right in.</p>
+          <h1>All Day Brunch, Lunch, Coffee &amp; <em>Cocktails</em>.</h1>
+          <p class="lede">A bright and cozy café on Princess Street. Walk right in, no reservations needed.</p>
           <div class="btn-row">
             <a class="btn btn--olive" href="#menu">See the menu</a>
             <a class="btn btn--ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Lay+Low+Cafe+241+Princess+St+Kingston+ON" target="_blank" rel="noopener">Get directions</a>
@@ -110,6 +110,21 @@
         <div class="hero-photo">
           <img src="assets/img/brunch-spread.jpg" alt="Lox benny and smashed avo toast on a sunlit wooden table" width="1179" height="1427">
           <div class="sticker" aria-hidden="true"><span><strong>7–4</strong>every day</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Story (the cafe's own words) -->
+    <section class="section" id="story" aria-labelledby="story-h">
+      <div class="container story">
+        <div class="story-photo">
+          <img src="assets/img/to-go-cups.jpg" alt="Four iced drinks in Lay Low cups on a red wooden railing" loading="lazy" width="1179" height="1336">
+        </div>
+        <div>
+          <span class="eyebrow">Since November 2023</span>
+          <h2 id="story-h">Our Story.</h2>
+          <p>Lay Low Cafe opened its doors in November 2023, founded by Kingston local, Erica Braunstein with a vision of creating a space that feels both vibrant and welcoming. By day, Lay Low is a bright and cozy cafe serving all day breakfast, fresh lunch options, specialty coffee, and cocktails. As the sun sets, our cafe transforms into something more intimate. An inviting space for private gatherings, celebrations, and community events.</p>
+          <p>We are more than just a cafe, we're a place where good food, good drinks and good company meet. Whether you're here for a morning latte, mid-day brunch, or an evening event, we hope you'll always feel at home when you Lay Low with us!</p>
         </div>
       </div>
     </section>
@@ -124,7 +139,7 @@
 
         <!--
           HOW TO EDIT THE MENU
-          Each item is one <li>: <div class="item-top"><h4>Name</h4><span class="price">$19</span></div><p>Description</p>
+          Each item is one <li>: <div class="item-top"><h4>Name</h4></div><p>Description</p> (no prices, at the cafe's request)
           Dietary tags go inside the <h4>: <span class="tag tag--v">V</span> (tag--vg vegan, tag--v vegetarian, tag--gf gluten-free)
         -->
 
@@ -138,76 +153,76 @@
         <div class="menu-panel" id="panel-brunch" role="tabpanel" aria-labelledby="tab-brunch">
           <h3>Brunch</h3>
           <ul class="menu-grid">
-            <li><div class="item-top"><h4>Smashed Avo <span class="tag tag--v">V</span></h4><span class="price">$19</span></div><p>Avocado, radish, pickled onions, grapefruit and goat cheese on toasted sourdough, with arugula and orange basil dressing.</p></li>
-            <li><div class="item-top"><h4>Granola Bowl <span class="tag tag--vg">VG</span><span class="tag tag--gf">GF</span></h4><span class="price">$17</span></div><p>House-made granola, seasonal fruit and coconut yogurt, topped with toasted coconut.</p></li>
-            <li><div class="item-top"><h4>The Brekkie Board</h4><span class="price">$24</span></div><p>Smashed avo, goat cheese and hot peppers on sourdough, a mini granola bowl and bacon loaded home fries.</p></li>
-            <li><div class="item-top"><h4>Classic Waffles <span class="tag tag--v">V</span></h4><span class="price">$18</span></div><p>Seasonal fruit, whipped mascarpone and berry compote, with maple syrup.</p></li>
-            <li><div class="item-top"><h4>Chocolate Chip Pancakes</h4><span class="price">$19</span></div><p>Four buttermilk pancakes with chocolate chips, icing sugar and maple syrup.</p></li>
-            <li><div class="item-top"><h4>Biggie</h4><span class="price">$20</span></div><p>The classic: eggs your way, sourdough toast, maple bacon and bacon loaded home fries.</p></li>
-            <li><div class="item-top"><h4>Cowboy Breakfast</h4><span class="price">$22</span></div><p>Eggs, sourdough, sausage, maple bacon, baked beans, sautéed mushrooms and grilled tomatoes.</p></li>
-            <li><div class="item-top"><h4>Eggs Benny</h4><span class="price">$19</span></div><p>Poached eggs, maple bacon and house hollandaise on an English muffin, with bacon loaded home fries.</p></li>
-            <li><div class="item-top"><h4>Lox Benny</h4><span class="price">$22</span></div><p>Smoked salmon, cream cheese, red onion, hollandaise and dill on an English muffin, with arugula.</p></li>
-            <li><div class="item-top"><h4>Benny and the Jam</h4><span class="price">$20</span></div><p>Poached eggs, bacon jam, goat cheese and grilled apple on an English muffin, with home fries.</p></li>
-            <li><div class="item-top"><h4>Southwest Omelette <span class="tag tag--v">V</span></h4><span class="price">$19</span></div><p>Spinach and jalapeño egg white omelette over peppers, onions and chipotle aioli home fries.</p></li>
-            <li><div class="item-top"><h4>Philly Pulled Pork Omelette</h4><span class="price">$20</span></div><p>Two eggs, pulled pork and cream cheese on sourdough, with crispy onions and BBQ drizzle.</p></li>
-            <li><div class="item-top"><h4>Breakfast Wrap</h4><span class="price">$21</span></div><p>Sausage, bacon or chorizo with scrambled eggs, greens, cheddar, hash browns and chipotle aioli.</p></li>
-            <li><div class="item-top"><h4>Monte Cristo</h4><span class="price">$19</span></div><p>Maple bacon, salami, mozzarella and cheddar on French toast, with house strawberry jam.</p></li>
-            <li><div class="item-top"><h4>Salmon Bagel</h4><span class="price">$21</span></div><p>Smoked salmon, jalapeño cream cheese, red onion and a fried egg on an everything bagel.</p></li>
+            <li><div class="item-top"><h4>Smashed Avo <span class="tag tag--v">V</span></h4></div><p>Avocado, radish, pickled onions, grapefruit and goat cheese on toasted sourdough, with arugula and orange basil dressing.</p></li>
+            <li><div class="item-top"><h4>Granola Bowl <span class="tag tag--vg">VG</span><span class="tag tag--gf">GF</span></h4></div><p>House-made granola, seasonal fruit and coconut yogurt, topped with toasted coconut.</p></li>
+            <li><div class="item-top"><h4>The Brekkie Board</h4></div><p>Smashed avo, goat cheese and hot peppers on sourdough, a mini granola bowl and bacon loaded home fries.</p></li>
+            <li><div class="item-top"><h4>Classic Waffles <span class="tag tag--v">V</span></h4></div><p>Seasonal fruit, whipped mascarpone and berry compote, with maple syrup.</p></li>
+            <li><div class="item-top"><h4>Chocolate Chip Pancakes</h4></div><p>Four buttermilk pancakes with chocolate chips, icing sugar and maple syrup.</p></li>
+            <li><div class="item-top"><h4>Biggie</h4></div><p>The classic: eggs your way, sourdough toast, maple bacon and bacon loaded home fries.</p></li>
+            <li><div class="item-top"><h4>Cowboy Breakfast</h4></div><p>Eggs, sourdough, sausage, maple bacon, baked beans, sautéed mushrooms and grilled tomatoes.</p></li>
+            <li><div class="item-top"><h4>Eggs Benny</h4></div><p>Poached eggs, maple bacon and house hollandaise on an English muffin, with bacon loaded home fries.</p></li>
+            <li><div class="item-top"><h4>Lox Benny</h4></div><p>Smoked salmon, cream cheese, red onion, hollandaise and dill on an English muffin, with arugula.</p></li>
+            <li><div class="item-top"><h4>Benny and the Jam</h4></div><p>Poached eggs, bacon jam, goat cheese and grilled apple on an English muffin, with home fries.</p></li>
+            <li><div class="item-top"><h4>Southwest Omelette <span class="tag tag--v">V</span></h4></div><p>Spinach and jalapeño egg white omelette over peppers, onions and chipotle aioli home fries.</p></li>
+            <li><div class="item-top"><h4>Philly Pulled Pork Omelette</h4></div><p>Two eggs, pulled pork and cream cheese on sourdough, with crispy onions and BBQ drizzle.</p></li>
+            <li><div class="item-top"><h4>Breakfast Wrap</h4></div><p>Sausage, bacon or chorizo with scrambled eggs, greens, cheddar, hash browns and chipotle aioli.</p></li>
+            <li><div class="item-top"><h4>Monte Cristo</h4></div><p>Maple bacon, salami, mozzarella and cheddar on French toast, with house strawberry jam.</p></li>
+            <li><div class="item-top"><h4>Salmon Bagel</h4></div><p>Smoked salmon, jalapeño cream cheese, red onion and a fried egg on an everything bagel.</p></li>
           </ul>
         </div>
 
         <div class="menu-panel" id="panel-lunch" role="tabpanel" aria-labelledby="tab-lunch">
           <h3>Lunch</h3>
           <ul class="menu-grid">
-            <li><div class="item-top"><h4>Daily Feature Soup</h4><span class="price">$12</span></div><p>Ask us about today's soup. Served with focaccia.</p></li>
-            <li><div class="item-top"><h4>Beet Salad <span class="tag tag--v">V</span><span class="tag tag--gf">GF</span></h4><span class="price">$18</span></div><p>Roasted beets and sweet potato, dates, spiced pecans and goat cheese with hickory balsamic.</p></li>
-            <li><div class="item-top"><h4>Caesar Salad</h4><span class="price">$12</span></div><p>Romaine, bacon, asiago, house croutons and smoky garlic Caesar. Add chicken +$8, or make it a wrap $19.</p></li>
-            <li><div class="item-top"><h4>Veggie Grilled Cheese <span class="tag tag--v">V</span></h4><span class="price">$18</span></div><p>Roasted mushrooms, caramelized onions, spinach and peppers with pesto aioli on sourdough.</p></li>
-            <li><div class="item-top"><h4>Tofu Banh Mi <span class="tag tag--vg">VG</span></h4><span class="price">$20</span></div><p>Chili oil tofu, vegan chipotle aioli, pickled daikon and carrot, cilantro, on ciabatta.</p></li>
-            <li><div class="item-top"><h4>Balsamic Chicken Smash</h4><span class="price">$22</span></div><p>Grilled chicken, bacon, smashed avo, roasted peppers, goat cheese and crispy onions on ciabatta.</p></li>
-            <li><div class="item-top"><h4>Mustard Melt</h4><span class="price">$20</span></div><p>Prosciutto, salami, mozzarella and spicy dill pickles on grilled focaccia with Carolina mustard.</p></li>
-            <li><div class="item-top"><h4>Chicken BLT</h4><span class="price">$19</span></div><p>Grilled chicken, bacon, cheddar, romaine, tomato and garlic aioli on ciabatta or in a wrap.</p></li>
+            <li><div class="item-top"><h4>Daily Feature Soup</h4></div><p>Ask us about today's soup. Served with focaccia.</p></li>
+            <li><div class="item-top"><h4>Beet Salad <span class="tag tag--v">V</span><span class="tag tag--gf">GF</span></h4></div><p>Roasted beets and sweet potato, dates, spiced pecans and goat cheese with hickory balsamic.</p></li>
+            <li><div class="item-top"><h4>Caesar Salad</h4></div><p>Romaine, bacon, asiago, house croutons and smoky garlic Caesar. Add chicken, or make it a wrap.</p></li>
+            <li><div class="item-top"><h4>Veggie Grilled Cheese <span class="tag tag--v">V</span></h4></div><p>Roasted mushrooms, caramelized onions, spinach and peppers with pesto aioli on sourdough.</p></li>
+            <li><div class="item-top"><h4>Tofu Banh Mi <span class="tag tag--vg">VG</span></h4></div><p>Chili oil tofu, vegan chipotle aioli, pickled daikon and carrot, cilantro, on ciabatta.</p></li>
+            <li><div class="item-top"><h4>Balsamic Chicken Smash</h4></div><p>Grilled chicken, bacon, smashed avo, roasted peppers, goat cheese and crispy onions on ciabatta.</p></li>
+            <li><div class="item-top"><h4>Mustard Melt</h4></div><p>Prosciutto, salami, mozzarella and spicy dill pickles on grilled focaccia with Carolina mustard.</p></li>
+            <li><div class="item-top"><h4>Chicken BLT</h4></div><p>Grilled chicken, bacon, cheddar, romaine, tomato and garlic aioli on ciabatta or in a wrap.</p></li>
           </ul>
-          <p class="menu-note">Sandwiches come with waffle fries or house salad. Upgrade to bacon loaded home fries +$2, soup or Caesar +$3, or gluten-free bread +$2.</p>
+          <p class="menu-note">Sandwiches come with waffle fries or house salad. Upgrade to bacon loaded home fries, soup or Caesar, or gluten-free bread.</p>
         </div>
 
         <div class="menu-panel" id="panel-drinks" role="tabpanel" aria-labelledby="tab-drinks">
           <h3>Coffee &amp; Drinks</h3>
           <ul class="menu-grid menu-grid--tight">
-            <li><div class="item-top"><h4>House Drip</h4><span class="price">$3.50</span></div></li>
-            <li><div class="item-top"><h4>Espresso</h4><span class="price">$3.50</span></div></li>
-            <li><div class="item-top"><h4>Americano</h4><span class="price">$4</span></div></li>
-            <li><div class="item-top"><h4>Cortado</h4><span class="price">$4.50</span></div></li>
-            <li><div class="item-top"><h4>Flat White</h4><span class="price">$5</span></div></li>
-            <li><div class="item-top"><h4>Latte</h4><span class="price">$5.50</span></div></li>
-            <li class="sub"><div class="item-top"><h4>Iced Tiramisu Latte</h4><span class="price">$6.75</span></div></li>
-            <li class="sub"><div class="item-top"><h4>Maple Oat Cinnamon Latte</h4><span class="price">$6.75</span></div></li>
-            <li class="sub"><div class="item-top"><h4>Toffee Nut Latte</h4><span class="price">$6.25</span></div></li>
-            <li class="sub"><div class="item-top"><h4>Dirty Grey Latte</h4><span class="price">$6.25</span></div></li>
-            <li><div class="item-top"><h4>Cappuccino</h4><span class="price">$5.50</span></div></li>
-            <li><div class="item-top"><h4>Mocha</h4><span class="price">$6</span></div></li>
-            <li><div class="item-top"><h4>Chai Latte</h4><span class="price">$6</span></div></li>
-            <li><div class="item-top"><h4>Matcha Latte</h4><span class="price">$6</span></div></li>
-            <li class="sub"><div class="item-top"><h4>Earl Grey Matcha</h4><span class="price">$6.75</span></div></li>
-            <li><div class="item-top"><h4>London Fog</h4><span class="price">$5.75</span></div></li>
-            <li><div class="item-top"><h4>Hot Chocolate</h4><span class="price">$5</span></div></li>
-            <li><div class="item-top"><h4>Tea</h4><span class="price">$4</span></div></li>
-            <li><div class="item-top"><h4>Smoothies</h4><span class="price">$9</span></div><p>Berry Bliss · On A Cloud · Strawberry Glaze · The Go-Go</p></li>
-            <li><div class="item-top"><h4>Fresh Juices</h4><span class="price">$9</span></div><p>Green Glow · Sunset · Friends of Mine · Blue Crush</p></li>
-            <li><div class="item-top"><h4>Fresh-Squeezed Orange Juice</h4><span class="price">$8</span></div></li>
+            <li><div class="item-top"><h4>House Drip</h4></div></li>
+            <li><div class="item-top"><h4>Espresso</h4></div></li>
+            <li><div class="item-top"><h4>Americano</h4></div></li>
+            <li><div class="item-top"><h4>Cortado</h4></div></li>
+            <li><div class="item-top"><h4>Flat White</h4></div></li>
+            <li><div class="item-top"><h4>Latte</h4></div></li>
+            <li class="sub"><div class="item-top"><h4>Iced Tiramisu Latte</h4></div></li>
+            <li class="sub"><div class="item-top"><h4>Maple Oat Cinnamon Latte</h4></div></li>
+            <li class="sub"><div class="item-top"><h4>Toffee Nut Latte</h4></div></li>
+            <li class="sub"><div class="item-top"><h4>Dirty Grey Latte</h4></div></li>
+            <li><div class="item-top"><h4>Cappuccino</h4></div></li>
+            <li><div class="item-top"><h4>Mocha</h4></div></li>
+            <li><div class="item-top"><h4>Chai Latte</h4></div></li>
+            <li><div class="item-top"><h4>Matcha Latte</h4></div></li>
+            <li class="sub"><div class="item-top"><h4>Earl Grey Matcha</h4></div></li>
+            <li><div class="item-top"><h4>London Fog</h4></div></li>
+            <li><div class="item-top"><h4>Hot Chocolate</h4></div></li>
+            <li><div class="item-top"><h4>Tea</h4></div></li>
+            <li><div class="item-top"><h4>Smoothies</h4></div><p>Berry Bliss · On A Cloud · Strawberry Glaze · The Go-Go</p></li>
+            <li><div class="item-top"><h4>Fresh Juices</h4></div><p>Green Glow · Sunset · Friends of Mine · Blue Crush</p></li>
+            <li><div class="item-top"><h4>Fresh-Squeezed Orange Juice</h4></div></li>
           </ul>
-          <p class="menu-note">Oat or almond milk +$0.75 · Flavour shot +$0.75</p>
+          <p class="menu-note">Oat or almond milk and flavour shots available.</p>
         </div>
 
         <div class="menu-panel" id="panel-cocktails" role="tabpanel" aria-labelledby="tab-cocktails">
           <h3>Cocktails</h3>
           <ul class="menu-grid">
-            <li class="feature"><div class="item-top"><h4>Mimosa Disco Bowl</h4><span class="price">$65</span></div><p>Mimosas for the whole table. Serves 2–4.</p></li>
-            <li><div class="item-top"><h4>Mimosa</h4><span class="price">$13</span></div><p>Prosecco with grapefruit, cranberry or fresh orange juice.</p></li>
-            <li><div class="item-top"><h4>Caesar</h4><span class="price">$15</span></div><p>Garlic-infused vodka, Tabasco, Worcestershire, pickle brine and Clamato, celery salt Tajín rim.</p></li>
-            <li><div class="item-top"><h4>Espresso Martini</h4><span class="price">$14</span></div><p>Vodka, Kahlúa, espresso and maple syrup.</p></li>
-            <li><div class="item-top"><h4>Brunch Spritz</h4><span class="price">$14</span></div><p>Aperol, prosecco, fresh orange juice and soda.</p></li>
-            <li><div class="item-top"><h4>Spicy Mango Margarita</h4><span class="price">$14</span></div><p>Tequila, triple sec, hot honey and lime with a Tajín rim.</p></li>
+            <li class="feature"><div class="item-top"><h4>Mimosa Disco Bowl</h4></div><p>Mimosas for the whole table. Serves 2–4.</p></li>
+            <li><div class="item-top"><h4>Mimosa</h4></div><p>Prosecco with grapefruit, cranberry or fresh orange juice.</p></li>
+            <li><div class="item-top"><h4>Caesar</h4></div><p>Garlic-infused vodka, Tabasco, Worcestershire, pickle brine and Clamato, celery salt Tajín rim.</p></li>
+            <li><div class="item-top"><h4>Espresso Martini</h4></div><p>Vodka, Kahlúa, espresso and maple syrup.</p></li>
+            <li><div class="item-top"><h4>Brunch Spritz</h4></div><p>Aperol, prosecco, fresh orange juice and soda.</p></li>
+            <li><div class="item-top"><h4>Spicy Mango Margarita</h4></div><p>Tequila, triple sec, hot honey and lime with a Tajín rim.</p></li>
           </ul>
           <p class="menu-note">19+ with valid ID.</p>
         </div>
@@ -216,12 +231,36 @@
       </div>
     </section>
 
+    <!-- Gift cards + merch -->
+    <section class="section" id="shop" aria-labelledby="shop-h">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Take a little Lay Low home</span>
+          <h2 id="shop-h">Gift Cards &amp; Merch.</h2>
+        </div>
+        <div class="shop">
+          <!-- GIFT CARDS: waiting on the cafe's payment system. Swap the disabled button for a link to their gift card page. -->
+          <article class="shop-card" id="gift-cards" aria-labelledby="gift-h">
+            <h3 id="gift-h">Gift Cards</h3>
+            <p>Treat someone to brunch, coffee or cocktails at Lay Low.</p>
+            <button class="btn btn--olive" type="button" disabled>Online gift cards coming soon</button>
+          </article>
+          <!-- MERCH (view only): add products here as <li>s with a photo, name and short description. -->
+          <article class="shop-card" id="merch" aria-labelledby="merch-h">
+            <h3 id="merch-h">Merch</h3>
+            <p>Lay Low merch is on its way to the website. Check back soon to see the collection.</p>
+            <ul class="merch-grid" hidden></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- Visit -->
-    <section class="section" id="visit" aria-labelledby="visit-h">
+    <section class="section section--paper" id="visit" aria-labelledby="visit-h">
       <div class="container visit">
         <div>
           <span class="eyebrow">Come say hi</span>
-          <h2 id="visit-h">Pull up a booth.</h2>
+          <h2 id="visit-h">Visit us.</h2>
           <dl>
             <div><dt>Where</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Lay+Low+Cafe+241+Princess+St+Kingston+ON" target="_blank" rel="noopener">241 Princess St, Kingston</a><small>Corner of Princess &amp; Sydenham</small></dd></div>
             <div><dt>When</dt><dd>Every day, 7am–4pm<small>Walk-ins only, no reservations</small></dd></div>
@@ -246,6 +285,27 @@
         <div class="map">
           <iframe title="Map showing Lay Low Cafe at 241 Princess St, Kingston" src="https://www.google.com/maps?q=Lay+Low+Cafe,+241+Princess+St,+Kingston,+ON&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
+      </div>
+    </section>
+
+    <!-- Private events -->
+    <section class="section" id="private-events" aria-labelledby="private-h">
+      <div class="container private">
+        <span class="eyebrow">After hours</span>
+        <h2 id="private-h">Private Events.</h2>
+        <p class="lede">As the sun sets, our cafe transforms into an inviting space for private gatherings and celebrations.</p>
+        <ul class="event-kinds">
+          <li>Birthday parties</li>
+          <li>Bridal &amp; baby showers</li>
+          <li>Engagement parties</li>
+          <li>Team &amp; work events</li>
+          <li>Private gatherings</li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn btn--olive" href="mailto:latenight@laylowcafe.ca?subject=Private%20event%20at%20Lay%20Low">Plan your event</a>
+          <a class="btn btn--ghost" href="late-night/">See community events</a>
+        </div>
+        <a class="private-mail" href="mailto:latenight@laylowcafe.ca">latenight@laylowcafe.ca</a>
       </div>
     </section>
   </main>

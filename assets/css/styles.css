@@ -140,6 +140,7 @@ p { margin: 0 0 1em; }
   display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: center;
 }
 .hero h1 em { font-style: italic; color: var(--olive-deep); }
+.hero h1 { font-size: clamp(2.6rem, 6vw, 4.9rem); }
 .hero .lede { margin-bottom: 2rem; }
 .hero-photo { position: relative; }
 .hero-photo img {
@@ -213,6 +214,26 @@ p { margin: 0 0 1em; }
 .tag--v { background: #dfe8cc; color: var(--booth); }
 .tag--gf { background: #f6dfae; color: #6b4a10; }
 
+/* ---------- Our Story ---------- */
+.story { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+.story-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+.story p { color: var(--ink-soft); font-size: 1.08rem; max-width: 56ch; }
+@media (max-width: 860px) { .story { grid-template-columns: 1fr; } .story-photo { max-width: 420px; } }
+
+/* ---------- Gift cards + merch ---------- */
+.shop { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 3vw, 28px); max-width: 920px; margin-inline: auto; }
+@media (max-width: 720px) { .shop { grid-template-columns: 1fr; } }
+.shop-card {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+  padding: clamp(24px, 3.5vw, 36px); border-radius: var(--radius-lg);
+  background: var(--paper); border: 1px solid var(--line);
+}
+.shop-card h3 { font-size: clamp(1.6rem, 3vw, 2rem); }
+.shop-card p { color: var(--ink-soft); margin-bottom: 1.4rem; }
+.shop-card .btn { margin-top: auto; }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+.merch-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; width: 100%; }
+
 /* ---------- Visit ---------- */
 .visit { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
 .visit dl { margin: 1.4rem 0 2rem; display: grid; gap: 20px; }
@@ -237,6 +258,14 @@ p { margin: 0 0 1em; }
 .message .btn { justify-self: start; }
 .message .hp { position: absolute; left: -9999px; }
 .message-status { font-size: 0.88rem; color: var(--ink-soft); margin: 0; }
+
+/* ---------- Private events ---------- */
+.private { text-align: center; max-width: 720px; }
+.private .lede { margin: 0 auto 1.6rem; }
+.event-kinds { list-style: none; padding: 0; margin: 0 0 2rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.event-kinds li { padding: 0.5em 1.05em; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); font-weight: 600; font-size: 0.95rem; }
+.private .btn-row { justify-content: center; }
+.private-mail { display: inline-block; margin-top: 18px; font-weight: 600; color: var(--olive-deep); }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--ink); color: var(--cream); padding: clamp(48px, 7vw, 72px) 0 calc(28px + env(safe-area-inset-bottom)); text-align: center; }

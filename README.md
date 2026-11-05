@@ -5,7 +5,7 @@ Website for Lay Low Cafe, 241 Princess St, Kingston, ON. Served at https://laylo
 It's plain HTML, CSS and a little JavaScript. There's no build step and no framework, so any static host can serve the repo as it is.
 
 ```
-index.html              the cafe page: hero, menu, visit (map, hours, phone), fall banner
+index.html              the cafe page: hero, our story, menu, gift cards + merch, visit, private events, fall banner
 late-night/index.html   Late Night @ Lay Low: events and private bookings (dark theme)
 menu/ events/ contact-us/   tiny redirects so the old GoDaddy URLs still work (events/ goes to late-night/)
 404.html
@@ -25,7 +25,7 @@ python3 -m http.server 8080
 
 ## Common edits
 
-**Menu.** Edit the `#menu` section of `index.html`. Each category is one tab panel, and each item is one `<li>` with its name, price and description. Copy an existing item and change it. The comment above the tabs explains the VG / V / GF tags.
+**Menu.** Edit the `#menu` section of `index.html`. Each category is one tab panel, and each item is one `<li>` with its name and description. The cafe asked for no prices on the site. Copy an existing item and change it. The comment above the tabs explains the VG / V / GF tags.
 
 **Hours.** Hours appear in three places. Update all three:
 1. The `HOURS` array in `assets/js/main.js`. This drives the "Open now" badge.
@@ -37,6 +37,12 @@ python3 -m http.server 8080
 **Seasonal banner.** The fall drinks strip is the `fall-banner` block at the top of `index.html`. Edit the `<span>` items in **both** `<p>` lines, which must match because the second copy makes the scroll loop seamlessly. Delete the whole block to remove it.
 
 **Opening animation.** `assets/js/intro.js` plays once per browser tab on the cafe page, and never for visitors who have reduced motion turned on. A click, tap or key press skips it. Timings are in the `T` object at the top of that file. To switch it off, delete the small inline `<script>` that adds the `intro` class and the `intro.js` script tag from the `<head>` of `index.html`.
+
+**Gift cards.** The `#gift-cards` card in `index.html` has a disabled "coming soon" button. Once the cafe's payment system is known, swap it for a link to their gift card page.
+
+**Merch.** View only. Add products to the `merch-grid` list in the `#merch` card (photo, name, short description) and remove its `hidden` attribute.
+
+**Private events.** The `#private-events` section near the bottom of `index.html`. The Late Night page's "Book a private event" button links there.
 
 **Photos.** The page uses one hero photo, `assets/img/brunch-spread.jpg`. The other photos in `assets/img/` are spares for swapping in. Keep photos at roughly 1200px on the long edge and JPEG quality 80.
 
