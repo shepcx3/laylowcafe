@@ -10,9 +10,10 @@ late-night/index.html   Late Night @ Lay Low: events and private bookings (dark 
 menu/ events/ contact-us/   tiny redirects so the old GoDaddy URLs still work (events/ goes to late-night/)
 404.html
 assets/css/styles.css   all styles; colours and fonts are at the top in :root
-assets/js/main.js       open-now badge, menu tabs, contact form
+assets/js/main.js       open-now badge, menu tabs, contact form, events from the Google Sheet
 assets/js/intro.js      opening animation: disco ball morphs into the logo
 assets/img/             photos, logo, icons
+docs/events-sheet-template.csv   starter for the Google Sheet the events list reads
 .nojekyll               tells GitHub Pages to serve files as-is
 ```
 
@@ -32,7 +33,7 @@ python3 -m http.server 8080
 2. The JSON-LD `openingHoursSpecification` near the top of `index.html`. Google reads this.
 3. The "When" line in the Visit section, plus the "7–4" sticker in the hero.
 
-**Events.** Edit the event list in `late-night/index.html`. The comment above the list explains how. Each event has a `data-date` and hides itself automatically once its day has passed. When none are left, the page says new events are on the way. Also update the matching JSON-LD entry at the top of that file so Google shows the event.
+**Events.** The cafe adds Late Night events in a Google Sheet, and the page reads it every time someone visits. See "Events sheet" below. Past events hide themselves the day after, and when none are left the page says new events are on the way. The events written into `late-night/index.html` are only a fallback for when the sheet isn't set up or can't be loaded.
 
 **Seasonal banner.** The fall drinks strip is the `fall-banner` block at the top of `index.html`. Edit the `<span>` items in **both** `<p>` lines, which must match because the second copy makes the scroll loop seamlessly. Delete the whole block to remove it.
 
@@ -49,6 +50,28 @@ python3 -m http.server 8080
 After changing `styles.css` or `main.js`, bump the `?v=` number on their links in each HTML file (e.g. `?v=4` to `?v=5`). Otherwise visitors' browsers can keep using the old copy for a while.
 
 Every link and asset path is relative. Keep it that way, so the site works on the real domain, on a GitHub Pages subfolder and when opened straight from disk.
+
+## Events sheet (Google Sheets)
+
+The Late Night events list is filled from a Google Sheet, so the cafe can add events without asking anyone to edit the site.
+
+**Setting it up (once):**
+
+1. In Google Sheets, create a new sheet and use File → Import → Upload to bring in `docs/events-sheet-template.csv`. Choose "Replace current sheet". This gives you the right column headings.
+2. Select the Date column and set Format → Number → Date, so the cafe can double-click a cell and pick a date.
+3. Share the sheet (Share button, top right) with the cafe's Google account as an **Editor**.
+4. Go to File → Share → **Publish to web**. Choose the events tab and **Comma-separated values (.csv)**, then click Publish and copy the link. It ends in `output=csv`.
+5. In `late-night/index.html`, paste that link into `data-events-sheet=""` on the `<ul class="events">` line, commit and push.
+6. Open the Late Night page and check the example event shows. Then delete the example row.
+
+**Columns.** Only *Date* and *Event name* are required. *Start time* and *End time* are shown as typed (for example `6:00 PM`), *Price* appears as the yellow tag, and *Hosted by* as the grey tag ("Hosted by" is added in front unless the cell already starts with "Hosted", "With" or "By"). Keep the heading row as it is. Columns can be moved around, and extra columns are ignored, so the cafe can keep its own notes in a column on the right.
+
+**Good to know:**
+- Changes show on the site within about 5 minutes, because that's how often Google refreshes a published sheet.
+- Rows can be in any order. The site sorts them by date.
+- Old rows can stay in the sheet. They stop showing once the date has passed.
+- Anyone with the published link can read the sheet, so keep private notes out of it.
+- If the sheet can't be loaded, the page falls back to the events written in the HTML.
 
 ## Contact form (Formspree)
 
