@@ -11,8 +11,10 @@ menu/ events/ contact-us/   tiny redirects so the old GoDaddy URLs still work (e
 404.html
 assets/css/styles.css   all styles; colours and fonts are at the top in :root
 assets/js/main.js       open-now badge, menu tabs, contact form, events from the Google Sheet
+assets/js/merch.js      the merch carousel (3D spin, swipe, arrows)
 assets/js/intro.js      opening animation: disco ball morphs into the logo
 assets/img/             photos, logo, icons
+assets/img/merch/       merch photos: NAME-front.webp, NAME-back.webp and NAME-edge.webp for each item
 docs/events-sheet-template.csv   starter for the Google Sheet the events list reads
 .nojekyll               tells GitHub Pages to serve files as-is
 ```
@@ -34,6 +36,8 @@ python3 -m http.server 8080
 3. The "When" line in the Visit section, plus the "7–4" sticker in the hero.
 
 **Events.** The cafe adds Late Night events in a Google Sheet, and the page reads it every time someone visits. See "Events sheet" below. Past events hide themselves the day after, and when none are left the page says new events are on the way. The events written into `late-night/index.html` are only a fallback for when the sheet isn't set up or can't be loaded.
+
+**Merch.** The merch carousel is in the `#merch` card of `index.html`, driven by `assets/js/merch.js`. Each item is a thin 3D cutout of its real photos: the front photo, the back photo and a few edge slices for thickness. It turns slowly counter-clockwise by itself, and visitors can drag it to spin it any direction. To add an item, copy one `<li class="merch-item">` and add three files to `assets/img/merch/`: `NAME-front.webp` and `NAME-back.webp` (900x1000, transparent background, same framing) and `NAME-edge.webp` (white where the front outline and the mirrored back outline overlap, transparent elsewhere). `data-edge` is the colour of the item's sides, usually a darker shade of the item. Items with only one photo use the front photo flipped and cleaned of its print as the back. Swap in a real back photo whenever you have one.
 
 **Seasonal banner.** The fall drinks strip is the `fall-banner` block at the top of `index.html`. Edit the `<span>` items in **both** `<p>` lines, which must match because the second copy makes the scroll loop seamlessly. Delete the whole block to remove it.
 
