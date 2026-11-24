@@ -60,7 +60,7 @@ if (root) {
       li.style.setProperty("--a", Math.min(Math.abs(o), 2));
       li.classList.toggle("is-active", o === 0);
       li.classList.toggle("is-far", Math.abs(o) > 1);
-      li.setAttribute("aria-hidden", o === 0 ? "false" : "true");
+      li.setAttribute("aria-hidden", Math.abs(o) > 1 ? "true" : "false");
       li.querySelector(".merch-pick").tabIndex = Math.abs(o) === 1 ? 0 : -1;
       li.querySelector(".merch-pick").hidden = o === 0;
     });
@@ -69,7 +69,7 @@ if (root) {
     sp.tabIndex = 0;
     sp.setAttribute("role", "group");
     sp.setAttribute("aria-label", `${li.dataset.name}. Drag to spin it, or hold Shift and press the arrow keys.`);
-    hint.textContent = `${li.dataset.name} · ${active + 1} of ${n}. Drag to spin it. Swipe or use the arrows for the next one.`;
+    hint.textContent = `${active + 1} of ${n} · Drag to spin it. Swipe or use the arrows for the next one.`;
   }
 
   function go(i) {

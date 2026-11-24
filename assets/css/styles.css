@@ -232,8 +232,17 @@ p { margin: 0 0 1em; }
 .shop-card p { color: var(--ink-soft); margin-bottom: 1.4rem; }
 .shop-card .btn { margin-top: auto; }
 .btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
-/* Merch carousel (assets/js/merch.js). Without JS it is a plain grid of photos. */
-.shop-card--wide { grid-column: 1 / -1; align-items: stretch; }
+/* ---------- Merch page (merch/index.html + assets/js/merch.js). Without JS it is a plain grid of photos. ---------- */
+.merch-page { padding-top: clamp(40px, 6vw, 72px); }
+.merch-page h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); }
+.merch-page h1 em { font-style: italic; color: var(--olive-deep); }
+.back-link { display: table; margin: 0 auto 1.4rem; font-weight: 600; font-size: 0.92rem; color: var(--ink-soft); text-decoration: none; }
+.back-link:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.merch-stage-wrap { position: relative; max-width: 1000px; margin-inline: auto; }
+.merch-stage-wrap .sticker { z-index: 20; }
+.merch-visit { text-align: center; margin-top: clamp(36px, 5vw, 56px); }
+.merch-visit p { color: var(--ink-soft); }
+.merch-visit .btn-row { justify-content: center; }
 .merch-track { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
 .merch-item { text-align: center; }
 .merch-face { width: 100%; height: auto; }
@@ -241,9 +250,9 @@ p { margin: 0 0 1em; }
 .merch-name { margin: 0; font-weight: 600; color: var(--ink); }
 .merch-hint { margin: 14px 0 0; text-align: center; font-size: 0.92rem; color: var(--ink-soft); }
 .js .merch-carousel {
-  --mh: clamp(290px, 56vw, 470px);
-  position: relative; height: calc(var(--mh) + 78px); overflow: hidden;
-  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
+  --mh: clamp(300px, 62vw, 540px);
+  position: relative; height: calc(var(--mh) + 84px); overflow: hidden;
+  background: #fff; border-radius: var(--radius-lg); box-shadow: var(--shadow);
   touch-action: pan-y; user-select: none; -webkit-user-select: none;
 }
 .js .merch-carousel::before { /* floor shadow under the centre item */
@@ -255,7 +264,7 @@ p { margin: 0 0 1em; }
   position: absolute; top: 18px; left: 50%; width: calc(var(--mh) * 0.9); height: var(--mh); margin-left: calc(var(--mh) * -0.45);
   perspective: 1400px;
   transform: translateX(calc(var(--o, 0) * 82%)) scale(calc(1 - var(--a, 0) * 0.32));
-  opacity: calc(1 - var(--a, 0) * 0.45); z-index: calc(5 - var(--a, 0));
+  opacity: calc(1 - var(--a, 0) * 0.3); z-index: calc(5 - var(--a, 0));
   transition: transform 0.55s cubic-bezier(0.22, 0.8, 0.3, 1), opacity 0.4s, visibility 0s 0.55s;
 }
 .js .merch-item.is-far { opacity: 0; visibility: hidden; pointer-events: none; }
@@ -278,12 +287,12 @@ p { margin: 0 0 1em; }
 .merch-arrow {
   position: absolute; top: calc(var(--mh) / 2 - 6px); z-index: 10; width: 46px; height: 46px; border-radius: 50%;
   display: grid; place-items: center; padding: 0 0 4px; font-size: 1.9rem; line-height: 1;
-  background: var(--ink); color: var(--cream); border: 0; cursor: pointer; box-shadow: var(--shadow);
-  transition: transform 0.2s, background 0.2s;
+  background: var(--paper); color: var(--ink); border: 2px solid var(--ink); cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
-.merch-arrow:hover { background: var(--booth); transform: scale(1.06); }
-.merch-prev { left: 12px; }
-.merch-next { right: 12px; }
+.merch-arrow:hover { background: var(--ink); color: var(--cream); transform: translateY(-2px); }
+.merch-prev { left: 16px; }
+.merch-next { right: 16px; }
 @media (prefers-reduced-motion: reduce) {
   .js .merch-item, .js .merch-item.is-active, .js .merch-item:not(.is-active) .merch-spin { transition: none; }
 }

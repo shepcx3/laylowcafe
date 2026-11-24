@@ -7,6 +7,7 @@ It's plain HTML, CSS and a little JavaScript. There's no build step and no frame
 ```
 index.html              the cafe page: hero, our story, menu, gift cards + merch, visit, private events, fall banner
 late-night/index.html   Late Night @ Lay Low: events and private bookings (dark theme)
+merch/index.html        the merch collection: a spinning carousel of the café's clothes and totes
 menu/ events/ contact-us/   tiny redirects so the old GoDaddy URLs still work (events/ goes to late-night/)
 404.html
 assets/css/styles.css   all styles; colours and fonts are at the top in :root
@@ -37,15 +38,13 @@ python3 -m http.server 8080
 
 **Events.** The cafe adds Late Night events in a Google Sheet, and the page reads it every time someone visits. See "Events sheet" below. Past events hide themselves the day after, and when none are left the page says new events are on the way. The events written into `late-night/index.html` are only a fallback for when the sheet isn't set up or can't be loaded.
 
-**Merch.** The merch carousel is in the `#merch` card of `index.html`, driven by `assets/js/merch.js`. Each item is a thin 3D cutout of its real photos: the front photo, the back photo and a few edge slices for thickness. It turns slowly counter-clockwise by itself, and visitors can drag it to spin it any direction. To add an item, copy one `<li class="merch-item">` and add three files to `assets/img/merch/`: `NAME-front.webp` and `NAME-back.webp` (900x1000, transparent background, same framing) and `NAME-edge.webp` (white where the front outline and the mirrored back outline overlap, transparent elsewhere). `data-edge` is the colour of the item's sides, usually a darker shade of the item. Items with only one photo use the front photo flipped and cleaned of its print as the back. Swap in a real back photo whenever you have one.
+**Merch.** The home page's Merch card links to `merch/index.html`, the collection page. Its carousel is driven by `assets/js/merch.js`. Each item is a thin 3D cutout of its real photos: the front photo, the back photo and a few edge slices for thickness. It turns slowly counter-clockwise by itself, and visitors can drag it to spin it any direction. To add an item, copy one `<li class="merch-item">` and add three files to `assets/img/merch/`: `NAME-front.webp` and `NAME-back.webp` (900x1000, transparent background, same framing) and `NAME-edge.webp` (white where the front outline and the mirrored back outline overlap, transparent elsewhere). `data-edge` is the colour of the item's sides, usually a darker shade of the item. Items with only one photo use the front photo flipped and cleaned of its print as the back. Swap in a real back photo whenever you have one.
 
 **Seasonal banner.** The fall drinks strip is the `fall-banner` block at the top of `index.html`. Edit the `<span>` items in **both** `<p>` lines, which must match because the second copy makes the scroll loop seamlessly. Delete the whole block to remove it.
 
 **Opening animation.** `assets/js/intro.js` plays once per browser tab on the cafe page, and never for visitors who have reduced motion turned on. A click, tap or key press skips it. Timings are in the `T` object at the top of that file. To switch it off, delete the small inline `<script>` that adds the `intro` class and the `intro.js` script tag from the `<head>` of `index.html`.
 
 **Gift cards.** The `#gift-cards` card in `index.html` has a disabled "coming soon" button. Once the cafe's payment system is known, swap it for a link to their gift card page.
-
-**Merch.** View only. Add products to the `merch-grid` list in the `#merch` card (photo, name, short description) and remove its `hidden` attribute.
 
 **Private events.** The `#private-events` section near the bottom of `index.html`. The Late Night page's "Book a private event" button links there.
 
