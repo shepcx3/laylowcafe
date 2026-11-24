@@ -10,8 +10,8 @@
   --paper: #fffaf0;
   --ink: #1f1c16;
   --ink-soft: #5a5347;
-  --olive: #8aa556;
-  --olive-deep: #5f7a33;
+  --olive: #667f30;      /* was #8aa556; darkened for 4.5:1 with white text */
+  --olive-deep: #5b752e; /* was #5f7a33; 4.5:1 on cream */
   --booth: #2e3a22;
   --sun: #f3b53b;
   --line: rgba(31, 28, 22, 0.14);
@@ -358,13 +358,13 @@ p { margin: 0 0 1em; }
     min-height: 52px; border-radius: 999px; color: var(--cream); text-decoration: none;
     font-size: 0.75rem; font-weight: 700;
   }
-  .action-bar a:first-child { background: var(--olive); }
+  .action-bar a:first-child { background: var(--olive); color: #fff; }
   .action-bar svg { width: 20px; height: 20px; }
 }
 
 /* ---------- Fall drinks banner ---------- */
 .fall-banner {
-  background: #c65f26; color: #fff8ec; overflow: hidden;
+  background: #ba5518; color: #fff8ec; overflow: hidden; /* was #c65f26 */
   border-bottom: 3px solid #8f3c12;
 }
 .fall-track { display: flex; width: max-content; animation: fall-scroll 45s linear infinite; }
@@ -405,7 +405,7 @@ html.intro body > .intro-overlay { visibility: visible; }
   --paper: #15173a;
   --ink: #f1ecff;       /* text: moonlight */
   --ink-soft: #b7b0d8;
-  --olive: #7c5cff;     /* accent: disco purple */
+  --olive: #704df0;     /* accent: disco purple (was #7c5cff; 4.5:1 with white) */
   --olive-deep: #c9b8ff;
   --sun: #ffd166;       /* star gold */
   --line: rgba(241, 236, 255, 0.14);
