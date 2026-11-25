@@ -64,8 +64,6 @@ if (root) {
   }
 
   // ---- 3D: one WebGL canvas that moves to whichever item is in the middle ----
-  const GW = 150, GH = 166; // mesh grid; the photos are 900x1000
-
   async function start3d() {
     try {
       const THREE = await import(new URL("vendor/three.module.min.js", MERCH_SCRIPT));
@@ -132,25 +130,36 @@ if (root) {
     const ctx = c.getContext("2d", { willReadFrequently: true });
     ctx.drawImage(depthImg, 0, 0);
     const px = ctx.getImageData(0, 0, c.width, c.height).data;
-    // 0 = outside the item, 1 = its flat outline band (front and back meet there), 2..255 = how puffy it is
-    const raw = (u, v) => px[(Math.round(v * (c.height - 1)) * c.width + Math.round(u * (c.width - 1))) * 4];
+    // Depth is 16-bit, high byte in red and low byte in green (an 8-bit grey PNG reads the same way):
+    // 0 = outside the item, 257 = its flat outline band (front and back meet there), above that = how puffy.
+    const W = c.width, H = c.height;
+    const raw = (x, y) => { const k = (y * W + x) * 4; return px[k] * 256 + px[k + 1]; };
+    const inside = (u, v) => raw(Math.round(u * (W - 1)), Math.round(v * (H - 1))) > 0;
+    const height = (u, v) => { // bilinear, so the surface is smooth rather than stepped
+      const x = u * (W - 1), y = v * (H - 1), x0 = Math.floor(x), y0 = Math.floor(y);
+      const x1 = Math.min(x0 + 1, W - 1), y1 = Math.min(y0 + 1, H - 1), fx = x - x0, fy = y - y0;
+      const h = (xx, yy) => Math.max(0, raw(xx, yy) - 257) / (65535 - 257);
+      return (h(x0, y0) * (1 - fx) + h(x1, y0) * fx) * (1 - fy) + (h(x0, y1) * (1 - fx) + h(x1, y1) * fx) * fy;
+    };
     const puff = Number(li.dataset.puff) || 0.08; // half-thickness at the fullest point, as a share of the height
+    // One mesh cell per depth pixel up to 300 across: the detailed (16-bit) items get a finer mesh.
+    const GW = Math.min(W - 1, 300), GH = Math.round((GW * 10) / 9);
 
     const model = new THREE.Group();
     for (const side of [1, -1]) {
-      const pos = [], uv = [], idx = [], inside = [];
+      const pos = [], uv = [], idx = [], isIn = [];
       for (let j = 0; j <= GH; j++) {
         for (let i = 0; i <= GW; i++) {
-          const u = i / GW, v = j / GH, r = raw(u, v);
-          pos.push((u - 0.5) * 0.9, 0.5 - v, (side * Math.max(0, r - 1) * puff) / 254);
+          const u = i / GW, v = j / GH;
+          pos.push((u - 0.5) * 0.9, 0.5 - v, side * height(u, v) * puff);
           uv.push(side > 0 ? u : 1 - u, 1 - v); // the back photo is shot from behind, so mirror it
-          inside.push(r > 0);
+          isIn.push(inside(u, v));
         }
       }
       for (let j = 0; j < GH; j++) {
         for (let i = 0; i < GW; i++) {
           const a = j * (GW + 1) + i, b = a + 1, cc = a + GW + 1, d = cc + 1;
-          if (!(inside[a] || inside[b] || inside[cc] || inside[d])) continue;
+          if (!(isIn[a] || isIn[b] || isIn[cc] || isIn[d])) continue;
           if (side > 0) idx.push(a, cc, b, b, cc, d);
           else idx.push(a, b, cc, b, d, cc);
         }
@@ -161,7 +170,8 @@ if (root) {
       geo.setIndex(idx);
       geo.computeVertexNormals();
       // Matte like cotton. DoubleSide: any hairline gap at the outline shows the inside of the fabric, not the page.
-      const mat = new THREE.MeshLambertMaterial({ map: side > 0 ? front : back, alphaTest: 0.2, side: THREE.DoubleSide });
+      // alphaToCoverage: smooth, anti-aliased cut-out edges instead of stair steps.
+      const mat = new THREE.MeshLambertMaterial({ map: side > 0 ? front : back, alphaTest: 0.2, alphaToCoverage: true, side: THREE.DoubleSide });
       model.add(new THREE.Mesh(geo, mat));
     }
     return model;
