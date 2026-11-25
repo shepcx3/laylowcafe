@@ -1,7 +1,11 @@
-// Merch carousel: the centre item is a thin 3D cutout of the real photos (front and back faces plus a
-// few edge slices for thickness) that turns slowly counter-clockwise by itself. Drag it to spin it any
-// direction; it coasts, then settles back into the slow turn. Swipe the white backdrop, use the arrows,
-// or click a neighbouring item to move along. Without JS the page shows a plain grid of photos.
+// Merch carousel: the centre item is a 3D model made from the real photos. Each photo is "inflated"
+// like a pillow from its depth map (NAME-depth.png), front photo on the front and back photo on the back,
+// and lit so it reads as a solid object (three.js, loaded on demand). Until that loads, or without WebGL,
+// it falls back to a thin CSS cutout: front and back faces plus a few edge slices for thickness.
+// It turns slowly counter-clockwise by itself. Drag it to spin it any direction; it coasts, then settles
+// back into the slow turn. Swipe the white backdrop, use the arrows, or click a neighbouring item to move
+// along. Without JS the page shows a plain grid of photos.
+const MERCH_SCRIPT = document.currentScript.src;
 const root = document.querySelector("[data-merch]");
 if (root) {
   const items = [...root.querySelectorAll(".merch-item")];
@@ -22,6 +26,7 @@ if (root) {
   let swiped = false;
   let visible = false;
   let last = 0;
+  let gl = null; // the three.js renderer, once loaded
 
   const spinOf = (li) => li.querySelector(".merch-spin");
   const spin = () => spinOf(items[active]);
@@ -49,7 +54,117 @@ if (root) {
   }
 
   function apply() {
-    spin().style.transform = `rotateX(${tilt}deg) rotateY(${angle}deg)`;
+    if (gl && items[active].classList.contains("is-3d")) {
+      spin().style.transform = "";
+      gl.group.rotation.set((-tilt * Math.PI) / 180, (angle * Math.PI) / 180, 0);
+      gl.renderer.render(gl.scene, gl.camera);
+    } else {
+      spin().style.transform = `rotateX(${tilt}deg) rotateY(${angle}deg)`;
+    }
+  }
+
+  // ---- 3D: one WebGL canvas that moves to whichever item is in the middle ----
+  const GW = 150, GH = 166; // mesh grid; the photos are 900x1000
+
+  async function start3d() {
+    try {
+      const THREE = await import(new URL("vendor/three.module.min.js", MERCH_SCRIPT));
+      const canvas = document.createElement("canvas");
+      canvas.className = "merch-gl";
+      canvas.setAttribute("aria-hidden", "true");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+      const scene = new THREE.Scene();
+      scene.add(new THREE.HemisphereLight(0xffffff, 0xd9d0bf, 2.2));
+      const key = new THREE.DirectionalLight(0xffffff, 1.6);
+      key.position.set(-1.4, 1.8, 2.6);
+      scene.add(key);
+      // The canvas is 120% x 116% of the item, so 1 unit = the item's height and the model has room to turn.
+      const camera = new THREE.PerspectiveCamera((2 * Math.atan(0.58 / 4) * 180) / Math.PI, 1.08 / 1.16, 0.1, 10);
+      camera.position.z = 4;
+      const group = new THREE.Group();
+      scene.add(group);
+      gl = { THREE, renderer, canvas, scene, camera, group, models: new Map() };
+      new ResizeObserver(() => { size(); apply(); }).observe(root);
+      show3d(items[active]);
+    } catch (err) {
+      console.warn("3D merch view unavailable, using the flat version.", err);
+    }
+  }
+
+  function size() {
+    const { canvas, renderer } = gl;
+    if (canvas.clientWidth) renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+  }
+
+  async function show3d(li) {
+    const model = await modelFor(li).catch((err) => console.warn("Couldn't build 3D model", err));
+    if (!model || li !== items[active]) return; // moved on while it loaded
+    gl.group.clear();
+    gl.group.add(model);
+    spinOf(li).append(gl.canvas);
+    size();
+    li.classList.add("is-3d");
+    apply();
+  }
+
+  function modelFor(li) {
+    if (!gl.models.has(li)) gl.models.set(li, buildModel(li));
+    return gl.models.get(li);
+  }
+
+  async function buildModel(li) {
+    const { THREE } = gl;
+    const base = li.querySelector(".merch-front").src.replace("-front.webp", "");
+    const loader = new THREE.TextureLoader();
+    const tex = async (url) => {
+      const t = await loader.loadAsync(url);
+      t.colorSpace = THREE.SRGBColorSpace;
+      t.anisotropy = gl.renderer.capabilities.getMaxAnisotropy();
+      return t;
+    };
+    const depthImg = new Image();
+    depthImg.src = `${base}-depth.png`;
+    const [front, back] = await Promise.all([tex(`${base}-front.webp`), tex(`${base}-back.webp`), depthImg.decode()]);
+    const c = document.createElement("canvas");
+    c.width = depthImg.naturalWidth;
+    c.height = depthImg.naturalHeight;
+    const ctx = c.getContext("2d", { willReadFrequently: true });
+    ctx.drawImage(depthImg, 0, 0);
+    const px = ctx.getImageData(0, 0, c.width, c.height).data;
+    // 0 = outside the item, 1 = its flat outline band (front and back meet there), 2..255 = how puffy it is
+    const raw = (u, v) => px[(Math.round(v * (c.height - 1)) * c.width + Math.round(u * (c.width - 1))) * 4];
+    const puff = Number(li.dataset.puff) || 0.08; // half-thickness at the fullest point, as a share of the height
+
+    const model = new THREE.Group();
+    for (const side of [1, -1]) {
+      const pos = [], uv = [], idx = [], inside = [];
+      for (let j = 0; j <= GH; j++) {
+        for (let i = 0; i <= GW; i++) {
+          const u = i / GW, v = j / GH, r = raw(u, v);
+          pos.push((u - 0.5) * 0.9, 0.5 - v, (side * Math.max(0, r - 1) * puff) / 254);
+          uv.push(side > 0 ? u : 1 - u, 1 - v); // the back photo is shot from behind, so mirror it
+          inside.push(r > 0);
+        }
+      }
+      for (let j = 0; j < GH; j++) {
+        for (let i = 0; i < GW; i++) {
+          const a = j * (GW + 1) + i, b = a + 1, cc = a + GW + 1, d = cc + 1;
+          if (!(inside[a] || inside[b] || inside[cc] || inside[d])) continue;
+          if (side > 0) idx.push(a, cc, b, b, cc, d);
+          else idx.push(a, b, cc, b, d, cc);
+        }
+      }
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+      geo.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
+      geo.setIndex(idx);
+      geo.computeVertexNormals();
+      // Matte like cotton. DoubleSide: any hairline gap at the outline shows the inside of the fabric, not the page.
+      const mat = new THREE.MeshLambertMaterial({ map: side > 0 ? front : back, alphaTest: 0.2, side: THREE.DoubleSide });
+      model.add(new THREE.Mesh(geo, mat));
+    }
+    return model;
   }
 
   function layout() {
@@ -76,6 +191,7 @@ if (root) {
     const to = ((i % n) + n) % n;
     if (to === active) return;
     const old = items[active];
+    old.classList.remove("is-3d");
     // Turn the old item back to face front by the short way, then drop its edge slices.
     angle = ((((angle + 180) % 360) + 360) % 360) - 180;
     spinOf(old).style.transform = `rotateY(${angle}deg)`;
@@ -89,6 +205,7 @@ if (root) {
     addSlices(items[active]);
     layout();
     apply();
+    if (gl) show3d(items[active]);
   }
 
   // Spin: pointer drag on the centre item.
@@ -159,6 +276,7 @@ if (root) {
     const was = visible;
     visible = entry.isIntersecting;
     if (visible && !was) { last = performance.now(); requestAnimationFrame(tick); }
+    if (visible && !start3d.called) { start3d.called = true; start3d(); }
   }).observe(root);
 
   addSlices(items[active]);

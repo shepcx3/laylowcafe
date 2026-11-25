@@ -276,6 +276,8 @@ p { margin: 0 0 1em; }
 .js .merch-face, .js .merch-slice { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .js .merch-front { transform: translateZ(var(--t)); backface-visibility: hidden; }
 .js .merch-back { display: block; transform: rotateY(180deg) translateZ(var(--t)); backface-visibility: hidden; }
+.merch-gl { position: absolute; left: -10%; top: -8%; width: 120%; height: 116%; pointer-events: none; }
+.js .merch-item.is-3d .merch-face, .js .merch-item.is-3d .merch-slice { visibility: hidden; }
 .js .merch-slice { -webkit-mask: var(--m) center / 100% 100% no-repeat; mask: var(--m) center / 100% 100% no-repeat; }
 .js .merch-name {
   position: absolute; left: 0; right: 0; bottom: -52px; font: 600 1.35rem/1.1 var(--font-display);

@@ -15,7 +15,9 @@ assets/js/main.js       open-now badge, menu tabs, contact form, events from the
 assets/js/merch.js      the merch carousel (3D spin, swipe, arrows)
 assets/js/intro.js      opening animation: disco ball morphs into the logo
 assets/img/             photos, logo, icons
-assets/img/merch/       merch photos: NAME-front.webp, NAME-back.webp and NAME-edge.webp for each item
+assets/img/merch/       merch photos: NAME-front.webp, NAME-back.webp, NAME-edge.webp and NAME-depth.png for each item
+assets/js/vendor/       three.js (MIT), used only by the merch page
+tools/merch-3d.py       makes the merch 3D files from cut-out photos
 docs/events-sheet-template.csv   starter for the Google Sheet the events list reads
 .nojekyll               tells GitHub Pages to serve files as-is
 ```
@@ -38,7 +40,7 @@ python3 -m http.server 8080
 
 **Events.** The cafe adds Late Night events in a Google Sheet, and the page reads it every time someone visits. See "Events sheet" below. Past events hide themselves the day after, and when none are left the page says new events are on the way. The events written into `late-night/index.html` are only a fallback for when the sheet isn't set up or can't be loaded.
 
-**Merch.** The home page's Merch card links to `merch/index.html`, the collection page. Its carousel is driven by `assets/js/merch.js`. Each item is a thin 3D cutout of its real photos: the front photo, the back photo and a few edge slices for thickness. It turns slowly counter-clockwise by itself, and visitors can drag it to spin it any direction. To add an item, copy one `<li class="merch-item">` and add three files to `assets/img/merch/`: `NAME-front.webp` and `NAME-back.webp` (900x1000, transparent background, same framing) and `NAME-edge.webp` (white where the front outline and the mirrored back outline overlap, transparent elsewhere). `data-edge` is the colour of the item's sides, usually a darker shade of the item. Items with only one photo use the front photo flipped and cleaned of its print as the back. Swap in a real back photo whenever you have one.
+**Merch.** The home page's Merch card links to `merch/index.html`, the collection page. Its carousel is driven by `assets/js/merch.js`. The item in the middle is a 3D model made from its real photos: the outline is "inflated" like a pillow using `NAME-depth.png`, with the front photo on the front and the back photo on the back, drawn with three.js (`assets/js/vendor/`, MIT licence). three.js only loads on that page, once the carousel is on screen. On devices without WebGL it falls back to a flat cutout with a bit of thickness. Items turn slowly counter-clockwise by themselves, and visitors can drag them to spin them in any direction. To add an item, copy one `<li class="merch-item">`, then run `tools/merch-3d.py` (see the top of that file) to make its four files in `assets/img/merch/`. `data-puff` sets how full the model is: about 0.12 for a hoodie, 0.08 for a tee, 0.24 for a cap and 0.04 for a tote. `data-edge` is the colour of its sides in the flat fallback.
 
 **Seasonal banner.** The fall drinks strip is the `fall-banner` block at the top of `index.html`. Edit the `<span>` items in **both** `<p>` lines, which must match because the second copy makes the scroll loop seamlessly. Delete the whole block to remove it.
 
