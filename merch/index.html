@@ -19,9 +19,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,500..600,100,1;1,9..144,500..600,100,1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/styles.css?v=12">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=13">
   <script src="../assets/js/main.js?v=10" defer></script>
-  <script src="../assets/js/merch.js?v=4" defer></script>
+  <script src="../assets/js/merch.js?v=5" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -48,68 +48,68 @@
           <p class="lede">Hoodies, tees, caps and totes. Give them a spin, then grab yours in the café.</p>
         </div>
 
-        <!-- Each item: copy one <li class="merch-item"> and add NAME-front.webp, NAME-back.webp, NAME-edge.webp and NAME-depth.png
-             to assets/img/merch/ (see README, "Merch"). data-puff is how thick the 3D model is at its fullest (share of its height); data-edge is the colour of its sides in the flat fallback. -->
+        <!-- Each item: copy one <li class="merch-item"> and add NAME-front.webp and NAME-back.webp to
+             assets/img/merch/ (make them with tools/merch-photos.py; see README, "Merch"). -->
         <div class="merch-stage-wrap">
           <div class="merch-carousel" data-merch aria-roledescription="carousel" aria-label="Lay Low merch">
             <ul class="merch-track">
-              <li class="merch-item" data-name="Rust Hoodie" data-puff="0.12" data-edge="#754636">
+              <li class="merch-item" data-name="Rust Hoodie">
                 <div class="merch-spin">
                   <img class="merch-face merch-front" src="../assets/img/merch/hoodie-front.webp" alt="Rust-orange pullover hoodie with a small white Lay Low logo on the chest" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                   <img class="merch-face merch-back" src="../assets/img/merch/hoodie-back.webp" alt="" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                 </div>
                 <p class="merch-name">Rust Hoodie</p>
               </li>
-              <li class="merch-item" data-name="Green Crewneck" data-puff="0.11" data-edge="#474a3f">
+              <li class="merch-item" data-name="Green Crewneck">
                 <div class="merch-spin">
                   <img class="merch-face merch-front" src="../assets/img/merch/crewneck-front.webp" alt="Olive green crewneck sweatshirt with a small white Lay Low logo" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                   <img class="merch-face merch-back" src="../assets/img/merch/crewneck-back.webp" alt="" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                 </div>
                 <p class="merch-name">Green Crewneck</p>
               </li>
-              <li class="merch-item" data-name="Sage Tee" data-puff="0.08" data-edge="#6c6d61">
+              <li class="merch-item" data-name="Sage Tee">
                 <div class="merch-spin">
                   <img class="merch-face merch-front" src="../assets/img/merch/tee-sage-front.webp" alt="Sage green t-shirt with a white Lay Low logo on the chest" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                   <img class="merch-face merch-back" src="../assets/img/merch/tee-sage-back.webp" alt="" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                 </div>
                 <p class="merch-name">Sage Tee</p>
               </li>
-              <li class="merch-item" data-name="Grey Tee" data-puff="0.08" data-edge="#545352">
+              <li class="merch-item" data-name="Grey Tee">
                 <div class="merch-spin">
                   <img class="merch-face merch-front" src="../assets/img/merch/tee-grey-front.webp" alt="Grey t-shirt with a white Lay Low logo on the chest" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                   <img class="merch-face merch-back" src="../assets/img/merch/tee-grey-back.webp" alt="" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                 </div>
                 <p class="merch-name">Grey Tee</p>
               </li>
-              <li class="merch-item" data-name="Green Cap" data-puff="0.24" data-edge="#2c2d2a">
+              <li class="merch-item" data-name="Green Cap">
                 <div class="merch-spin">
                   <img class="merch-face merch-front" src="../assets/img/merch/cap-front.webp" alt="Dark green cap with Lay Low stitched on the front in white" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                   <img class="merch-face merch-back" src="../assets/img/merch/cap-back.webp" alt="" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                 </div>
                 <p class="merch-name">Green Cap</p>
               </li>
-              <li class="merch-item" data-name="Pink Script Cap" data-puff="0.24" data-edge="#937a79">
+              <li class="merch-item" data-name="Pink Script Cap">
                 <div class="merch-spin">
                   <img class="merch-face merch-front" src="../assets/img/merch/script-cap-front.webp" alt="Pink cap with Lay Low stitched in green script on the front" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                   <img class="merch-face merch-back" src="../assets/img/merch/script-cap-back.webp" alt="" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                 </div>
                 <p class="merch-name">Pink Script Cap</p>
               </li>
-              <li class="merch-item" data-name="Black Disco Tote" data-puff="0.04" data-edge="#2c2c2c">
+              <li class="merch-item" data-name="Black Disco Tote">
                 <div class="merch-spin">
                   <img class="merch-face merch-front" src="../assets/img/merch/tote-black-front.webp" alt="Black tote bag with a white disco ball and Lay Low print" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                   <img class="merch-face merch-back" src="../assets/img/merch/tote-black-back.webp" alt="" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                 </div>
                 <p class="merch-name">Black Disco Tote</p>
               </li>
-              <li class="merch-item" data-name="Cream Tote" data-puff="0.04" data-edge="#95877d">
+              <li class="merch-item" data-name="Cream Tote">
                 <div class="merch-spin">
                   <img class="merch-face merch-front" src="../assets/img/merch/tote-cream-front.webp" alt="Cream tote bag printed I just wanna Lay Low in green" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                   <img class="merch-face merch-back" src="../assets/img/merch/tote-cream-back.webp" alt="" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                 </div>
                 <p class="merch-name">Cream Tote</p>
               </li>
-              <li class="merch-item" data-name="Green Tote" data-puff="0.04" data-edge="#505b4e">
+              <li class="merch-item" data-name="Green Tote">
                 <div class="merch-spin">
                   <img class="merch-face merch-front" src="../assets/img/merch/tote-green-front.webp" alt="Green tote bag printed Lay Low three times in white" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
                   <img class="merch-face merch-back" src="../assets/img/merch/tote-green-back.webp" alt="" width="900" height="1000" loading="lazy" decoding="async" draggable="false">
@@ -122,6 +122,7 @@
           </div>
           <div class="sticker" aria-hidden="true"><span><strong>In café</strong>only</span></div>
         </div>
+        <div class="merch-rail" role="group" aria-label="All items" hidden></div>
         <p class="merch-hint" aria-live="polite" hidden></p>
 
         <div class="merch-visit">
